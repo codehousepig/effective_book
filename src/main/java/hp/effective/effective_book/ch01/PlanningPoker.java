@@ -15,6 +15,13 @@ public class PlanningPoker {
 
 	public List<String> identifyExtremes(List<Estimate> estimates) {
 
+		if (estimates == null) { // 1. 추정 목록은 널이 될 수 없다.
+			throw new IllegalArgumentException("estimates cannot be null");
+		}
+		if (estimates.size() <= 1) { // 2. 추정 목록은 하나보다 많은 요소를 포함해야 한다.
+			throw new IllegalArgumentException("there has to be more than 1 estimate in the list");
+		}
+
 		Estimate lowesEstimate = null;
 		Estimate highesEstimate = null;
 

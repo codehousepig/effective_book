@@ -15,21 +15,20 @@ public class PlanningPoker {
 
 	public List<String> identifyExtremes(List<Estimate> estimates) {
 
-		Estimate lowesEstimate = null; // 1. 가장 낮은 예측치를 저장할 변수를 선언한다.
-		Estimate highesEstimate = null; // 1. 가장 높은 예측치를 저장할 변수를 선언한다.
+		Estimate lowesEstimate = null;
+		Estimate highesEstimate = null;
 
 		for (Estimate estimate : estimates) {
-
-			// 2. 만약 현재 예측치가 현재까지의 가장 높은 예측치보다 더 높다면 현재 예측치로 바꾼다.
 			if (highesEstimate == null || estimate.getEstimate() > highesEstimate.getEstimate()) {
 				highesEstimate = estimate;
-			// 3. 만약 현재 예측치가 현재까지의 가장 낮은 예측치보다 더 낮다면 현재 예측치로 바꾼다.
-			} else if (lowesEstimate == null || estimate.getEstimate() < lowesEstimate.getEstimate()) {
+			}
+			// 1. else if를 if로 바꿔서 버그를 수정
+			if (lowesEstimate == null || estimate.getEstimate() < lowesEstimate.getEstimate()) {
 				lowesEstimate = estimate;
 			}
 		}
 
-		return Arrays.asList( // 4. 양극단의 예측치를 제시한 개발자를 반환한다.
+		return Arrays.asList(
 			lowesEstimate.getDeveloper(),
 			highesEstimate.getDeveloper()
 		);

@@ -1,6 +1,7 @@
 package hp.effective.effective_book.ch01;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,22 +23,30 @@ public class PlanningPoker {
 			throw new IllegalArgumentException("there has to be more than 1 estimate in the list");
 		}
 
-		Estimate lowesEstimate = null;
-		Estimate highesEstimate = null;
+		Estimate lowestEstimate = null;
+		Estimate highestEstimate = null;
 
 		for (Estimate estimate : estimates) {
-			if (highesEstimate == null || estimate.getEstimate() > highesEstimate.getEstimate()) {
-				highesEstimate = estimate;
+			if (highestEstimate == null || estimate.getEstimate() > highestEstimate.getEstimate()) {
+				highestEstimate = estimate;
 			}
 			// 1. else if를 if로 바꿔서 버그를 수정
-			if (lowesEstimate == null || estimate.getEstimate() < lowesEstimate.getEstimate()) {
-				lowesEstimate = estimate;
+			if (lowestEstimate == null || estimate.getEstimate() < lowestEstimate.getEstimate()) {
+				lowestEstimate = estimate;
 			}
 		}
 
+		/**
+		 * 만약 최저 추정 객체가 최고 추정 객체와 같아면,
+		 * 이는 모든 개발자의 추정값이 같다는 뜻이므로 빈 목록을 반환한다.
+		 * */
+		if (lowestEstimate.equals(highestEstimate)) {
+			return Collections.emptyList();
+		}
+
 		return Arrays.asList(
-			lowesEstimate.getDeveloper(),
-			highesEstimate.getDeveloper()
+			lowestEstimate.getDeveloper(),
+			highestEstimate.getDeveloper()
 		);
 	}
 }

@@ -113,4 +113,19 @@ class PlanningPokerTest {
 		// 2. 반복된 추정값이 있을 때마다 목록에서 먼저 나타나는 개발자가 메서드에서 반환되는 개발자라고 단언한다.
 		assertThat(devs).containsExactlyInAnyOrder("Mauricio", "Arie");
 	}
+
+	@Test
+	void allDevelopersWithTheSameEstimate() {
+		List<Estimate> list = Arrays.asList( // 1. 모든 개발자의 추정값이 같은 추정 객체를 가진 목록을 선언한다.
+			new Estimate("Mauricio", 10),
+			new Estimate("Arie", 10),
+			new Estimate("Andy", 10),
+			new Estimate("Frank", 10),
+			new Estimate("Annibale", 10)
+		);
+		List<String> devs = new PlanningPoker().identifyExtremes(list);
+
+		assertThat(devs).isEmpty(); // 2. 결과 목록이 비어 있다고 단언한다.
+
+	}
 }

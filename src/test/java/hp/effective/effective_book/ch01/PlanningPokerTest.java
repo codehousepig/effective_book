@@ -97,4 +97,20 @@ class PlanningPokerTest {
 		// 10. 최소 1개의 요소를 가지는 (실제로는 목록의 크기에 제한이 없는) 추정 목록을 반환한다.
 		return estimates.list().ofMinSize(1);
 	}
+
+	@Test
+	void developersWithSameEstimates() {
+		List<Estimate> list = Arrays.asList( // 1. 반복된 추정값을 가진 추정 목록을 선언한다.
+			new Estimate("Mauricio", 10),
+			new Estimate("Arie", 5),
+			new Estimate("Andy", 10),
+			new Estimate("Frank", 7),
+			new Estimate("Annibale", 5)
+		);
+
+		List<String> devs = new PlanningPoker().identifyExtremes(list);
+
+		// 2. 반복된 추정값이 있을 때마다 목록에서 먼저 나타나는 개발자가 메서드에서 반환되는 개발자라고 단언한다.
+		assertThat(devs).containsExactlyInAnyOrder("Mauricio", "Arie");
+	}
 }

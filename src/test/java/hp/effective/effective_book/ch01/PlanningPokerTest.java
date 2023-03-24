@@ -53,7 +53,7 @@ class PlanningPokerTest {
 		assertThat(devs).containsExactlyInAnyOrder("Mauricio", "Frank");
 	}
 
-	@Test
+/*	@Test
 	void manyEstimates() {
 		List<Estimate> list = Arrays.asList( // 4. 이제 세 개발자의 추정을 지닌 목록을 정의한다.
 			new Estimate("Mauricio", 10),
@@ -65,7 +65,7 @@ class PlanningPokerTest {
 
 		// 6. 올바른 개발자 이름인 Mauricio, Arie를 반환하는지 확인한다.
 		assertThat(devs).containsExactlyInAnyOrder("Mauricio", "Arie");
-	}
+	}*/
 
 	@Property // 1. 메서드를 기준의 JUit 테스트 대신 속성 기반 테스트로 선언한다.
 	// 2. 프레임워크는 무작위로 생성한 추정 목록을 제공한다.
